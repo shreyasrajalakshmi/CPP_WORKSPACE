@@ -17,7 +17,7 @@ int main() {
     while (playerGuess != randomNumber) {
         std::cout << "Enter your guess: ";
         std::cin >> playerGuess;
-        attempts++;
+        attempts++; 
 
         if (playerGuess < randomNumber) {
             std::cout << "Too low! Try again." << std::endl;
