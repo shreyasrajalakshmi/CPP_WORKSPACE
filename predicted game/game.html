@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two-Player Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    #game-container {
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    input[type="number"] {
+      padding: 10px;
+      width: 80%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <h1>Two-Player Number Guessing Game</h1>
+    <p id="instructions">I have picked a number between 1 and 100. Players take turns guessing!</p>
+    <input type="number" id="guess" placeholder="Enter your guess" />
+    <button onclick="makeGuess()">Submit Guess</button>
+    <div id="result"></div>
+    <button onclick="restartGame()" style="margin-top: 10px; display: none;" id="restart-btn">Play Again</button>
+  </div>
+
+  <script>
+    let randomNumber = Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100
+    let currentPlayer = 1;
+    let attempts = 0;
+
+    function makeGuess() {
+      const guessInput = document.getElementById("guess");
+      const result = document.getElementById("result");
+      const restartBtn = document.getElementById("restart-btn");
+
+      const playerGuess = parseInt(guessInput.value);
+
+      // Input validation
+      if (isNaN(playerGuess) || playerGuess < 1 || playerGuess > 100) {
+        result.textContent = "Invalid input! Please enter a number between 1 and 100.";
+        result.style.color = "red";
+        return;
+      }
+
+      attempts++;
+      if (playerGuess < randomNumber) {
+        result.textContent = `Too low! Player ${currentPlayer}, try again on your next turn.`;
+        result.style.color = "orange";
+      } else if (playerGuess > randomNumber) {
+        result.textContent = `Too high! Player ${currentPlayer}, try again on your next turn.`;
+        result.style.color = "orange";
+      } else {
+        result.textContent = `Congratulations, Player ${currentPlayer}! You guessed the number in ${attempts} attempts.`;
+        result.style.color = "green";
+        restartBtn.style.display = "inline-block"; // Show restart button
+        document.getElementById("guess").disabled = true; // Disable input
+        return;
+      }
+
+      // Switch players
+      currentPlayer = currentPlayer === 1 ? 2 : 1;
+      guessInput.value = ""; // Clear input field
+    }
+
+    function restartGame() {
+      randomNumber = Math.floor(Math.random() * 100) + 1;
+      currentPlayer = 1;
+      attempts = 0;
+      document.getElementById("guess").value = "";
+      document.getElementById("guess").disabled = false;
+      document.getElementById("result").textContent = "";
+      document.getElementById("restart-btn").style.display = "none";
+    }
+  </script>
+</body>
+</html>
