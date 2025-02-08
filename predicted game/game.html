@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Two-Player Number Guessing Game</title>
+  <title>ittooli  </title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      background-image: url('https://wallpapers-clan.com/wp-content/uploads/2024/03/starfall-night-sky-mountains-aesthetic-gif-preview-desktop-wallpaper.gif');
+      
       color: #333;
     }
     #game-container {
       margin: 50px auto;
       padding: 20px;
       max-width: 400px;
-      background: #fff;
+      background: #e2aacb;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -33,12 +35,12 @@
       font-size: 16px;
       border: none;
       border-radius: 5px;
-      background-color: #007bff;
+      background-color:rgba(37, 10, 70, 0.963);
       color: white;
       cursor: pointer;
     }
     button:hover {
-      background-color: #0056b3;
+      background-color: #0dc73f;
     }
     #result {
       margin-top: 20px;
@@ -77,11 +79,11 @@
 
       attempts++;
       if (playerGuess < randomNumber) {
-        result.textContent = `Too low! Player ${currentPlayer}, try again on your next turn.`;
-        result.style.color = "orange";
+        result.textContent = `Too low ! Player ${currentPlayer}, try again on your next turn.`;
+        result.style.color = "black";
       } else if (playerGuess > randomNumber) {
-        result.textContent = `Too high! Player ${currentPlayer}, try again on your next turn.`;
-        result.style.color = "orange";
+        result.textContent = `Too high ! Player ${currentPlayer}, try again on your next turn.`;
+        result.style.color = "black";
       } else {
         result.textContent = `Congratulations, Player ${currentPlayer}! You guessed the number in ${attempts} attempts.`;
         result.style.color = "green";
